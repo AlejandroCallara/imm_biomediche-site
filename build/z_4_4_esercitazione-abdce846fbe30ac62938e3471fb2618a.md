@@ -1,0 +1,47 @@
+# Esercitazione 4.4: Valutazione delle perfusione cerebrale da immagini RM
+
+## A. Immagini gradient-echo (GE) cerebrali
+La cartella “esercitazione4.4” contiene 
+-	Una cartella “Dati per studio di perfusione cerebrale” con una serie di immagini in formato DICOM
+-	uno script chiamato `BRAINVediImmagini.py` per visualizzare le immagini a video
+-	Un file chiamato *AIF.mat* contenente la curva tempo-intensità dell’`AIF` (arterial input function) selezionata da una ROI relativa ad una arteria vicina alla ROI di tessuto 
+
+### A.1  Visualizzare, accendendo ai diversi campi dell’header dei files DICOM,
+-	il nome della sequenza di acquisizione utilizzata (ScanningSequence)
+-	il valore di `TE` utilizzato nella sequenza di acquisizione (EchoTime)
+-	il valore di `TR` utilizzato nella sequenza di acquisizione (RepetitionTime)
+-	il valore del `FA` (flipAngle)
+### A.2 Calcolare (mostrando i grafici risultanti laddove possibile)
+-	il tempo di acquisizione di ciascuna immagine: dato dal campo Info del DICOM dal nome
+TriggerTime; costruire il vettore dei tempi
+-	la curva tempo-intensità del segnale ($T/I$) relativa ad una ROI di 9 voxels, centrati nel voxel (riga,colonna)= (51,81)
+-	le curve tempo-concentrazione dell’AIF e della curva $T/I$: cioè $C_A(t)$ e $C_T(t)$
+-	la risposta impulsiva (mediante deconvoluzione tra $C_T(t)$ e $C_A(t)$ – si consiglia di implementare la deconvoluzione mediante rapporto delle curve in frequenza)
+-	il flusso $f$ (CBV)
+-	il valore di $\lambda$ (volume di sangue cerebrale CBV)
+-	il valore di $MTT$
+
+### A.3 Stimare le mappe parametriche di CBF, CBV, MTT
+
+## Soluzione
+
+<img src="./images/image_es_4_4_1.png" alt="Esercitazione 4.4" style="width:100%;">
+
+*Figura 1. Curva tempo-intensità. Slice 9, punti attorno a [51,81].*
+
+<img src="./images/image_es_4_4_2.png" alt="Esercitazione 4.4" style="width:100%;">
+
+*Figura 2. Curva tempo-concentrazione. Slice 9, punti attorno a [51,81].*
+
+<img src="./images/image_es_4_4_3.png" alt="Esercitazione 4.4" style="width:100%;">
+
+*Figura 3. Risposta impulsiva.*
+
+**Parametri stimati:**
+
+$CBF: ~6.7 \mathrm{s}^{-1}$
+
+$CBV: ~30\%$
+
+$MTT: ~0.044 \text{s}$
+
