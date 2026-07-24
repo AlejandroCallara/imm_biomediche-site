@@ -8,6 +8,9 @@
     <loc>http://localhost:3000/c10-info</loc>
   </url>
   <url>
+    <loc>http://localhost:3000/c11-python-links</loc>
+  </url>
+  <url>
     <loc>http://localhost:3000/c1-radiazione-elettromagnetica-richiami</loc>
   </url>
   <url>
@@ -17,13 +20,19 @@
     <loc>http://localhost:3000/c2-immagini-radiologiche</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/z-2-1-esercitazione</loc>
-  </url>
-  <url>
     <loc>http://localhost:3000/c3-immagini-in-medicina-nucleare</loc>
   </url>
   <url>
     <loc>http://localhost:3000/z-3-1-esercitazione</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/z-3-2-esercitazione</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/z-3-3-esercitazione</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/z-3-4-esercitazione</loc>
   </url>
   <url>
     <loc>http://localhost:3000/c4-immagini-di-risonanza-magnetica</loc>
@@ -63,6 +72,21 @@
   </url>
   <url>
     <loc>http://localhost:3000/z-6-1-esercitazione</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/z-6-2-esercitazione</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/z-6-3-esercitazione</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/z-6-4-esercitazione</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/z-6-5-esercitazione</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/z-6-6-esercitazione</loc>
   </url>
   <url>
     <loc>http://localhost:3000/bibliografia</loc>

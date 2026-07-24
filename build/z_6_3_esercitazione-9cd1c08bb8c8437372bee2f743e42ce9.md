@@ -1,0 +1,148 @@
+# Esercitazione 6.3: Algoritmi analitici BPF e FBP
+
+## Dati
+
+- Sinogrammi dei fantocci calcolati nelle esercitazioni precedenti:
+  - fantoccio con singolo punto;
+  - fantoccio Shepp-Logan `128 x 128`, `Delta theta = 1°`;
+  - fantoccio Shepp-Logan `32 x 32`, `Delta theta = 1°`;
+  - fantoccio circolare con rumore.
+- Funzione `R0 = chiamaFiltroConico(nx, ny)` per la costruzione di un filtro conico, nel file `chiamaFiltroConico.py`.
+
+## Svolgere
+
+### Punto A: laminogrammi
+
+Calcolare i laminogrammi dai sinogrammi con la funzione `iradon` senza filtraggio:
+
+```python
+iradon(Sino_P1, theta=teta1, filter_name=None, interpolation='linear', circle=False)
+```
+
+Visualizzare i risultati.
+
+### Punto B: BPF
+
+Ricostruire le immagini dai sinogrammi mediante algoritmo **BPF**, usando come filtro la rampa 2D, cioè il cono opportunamente costruito con `chiamaFiltroConico.py`, e i laminogrammi calcolati nel punto precedente. Visualizzare i risultati.
+
+### Punto C: FBP
+
+Ricostruire le immagini dai sinogrammi mediante algoritmo **FBP**, usando il filtro rampa implementato in Python:
+
+```python
+iradon(..., filter_name='ramp', interpolation='linear', circle=False)
+```
+
+Visualizzare i risultati.
+
+### Punto D: filtri FBP su dati rumorosi
+
+Ricostruire mediante **FBP** l'immagine dal fantoccio circolare con rumore, usando i filtri:
+
+- rampa (`ramp`);
+- coseno;
+- Hamming;
+- Hanning.
+
+Visualizzare i risultati.
+
+## Codice di partenza
+
+```python
+# -*- coding: utf-8 -*-
+
+import numpy as np
+from scipy import fft
+import matplotlib.pyplot as plt
+from skimage.transform import radon, iradon
+from phantom import phantom
+from chiamaFiltroConico import chiamaFiltroConico
+
+# Recuperare dalle esercitazioni precedenti:
+#1.	Fantocci generati nelle Esercitazioni 2 e 3 (1: fantoccio con singolo punto; 2: fantoccio Shepp-Logan 128x128 punti; 3: fantoccio Shepp-Logan 32x32 punti; 4: fantoccio circolare con rumore.
+#2.	Sinogrammi dei fantocci del punto precedente (calcolati nelle esercitazioni precedenti)
+
+# A. Calcolare i laminogrammi dai sinogrammi del punto 2
+Lamin1 = iradon(sinogramma, theta=angoli, filter_name=None, interpolation='linear', circle=False))
+Lamin2 = ...
+...
+# B.Ricostruire le immagini dai sinogrammi del punto 2., mediante l’algoritmo BPF
+# N.B. filtragio in frequenza, utilizzando il filtro implementato in "chiamaFiltroConico.py”
+
+....
+
+# C. Ricostruire le immagini dai sinogrammi del punto 2., mediante l’algoritmo FBP
+# utilizzando come filtro la rampa (funzione iradon del Python, con: filter_name='ramp', interpolation='linear', circle=False).  
+ FBP1 = iradon(....)
+...
+
+# D. valutazione dei filtri per ricostruzione FBP:
+#    Ricostruire mediante algoritmo FBP l’immagine dal fantoccio circolare
+# utilizzando i vari filtri
+Filtered_ramp =...
+Filtered_Cosin =...
+Filtered_Hamming =...
+Filtered_Hanning =...
+
+# mostrare i risultati
+plt.figure(figsize=(..., ...))
+....
+plt.show()
+```
+
+
+### `chiamaFiltroConico.py`
+
+```python
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Mar 12 15:25:26 2025
+
+@author: mfilo
+"""
+
+import numpy as np
+# import matplotlib.pyplot as plt
+# from mpl_toolkits import mplot3d
+
+def chiamaFiltroConico(nx, ny):
+    dx = 1 / nx  # asse spaziale
+    dy = 1 / ny
+    
+    dfx = 1 / (nx * dx)  # risoluzione in frequenza
+    dfy = 1 / (ny * dy)
+    
+    fx = dfx * np.arange(-nx / 2 + 1, nx / 2 + 1)  # asse frequenze, la freq 0 è a Fmax/2
+    fy = dfy * np.arange(-ny / 2 + 1, ny / 2 + 1)
+    FX, FY = np.meshgrid(fx, fy)
+    
+    RO = np.sqrt(FX**2 + FY**2)  # filtro 2D IN FREQUENZA...
+    
+    # plt.figure()
+    # ax = plt.axes(projection='3d')
+    # # ax.plot_wireframe(fx, fy, RO, color='black')
+    # ax.plot_surface(fx, fy, RO, rstride=1, cstride=1,
+    #             cmap='viridis', edgecolor='black')
+    # ax.set_title('filtro conico (rampa 2D)');
+    
+    # plt.grid(True)
+    # plt.xlabel('fx')
+    # plt.ylabel('fy')
+    # plt.show()
+    
+    return RO
+
+# chiamaFiltroConico(32, 32)
+```
+
+## Soluzioni
+
+![Soluzioni e risultati dal PDF originale 1](./images/santarelli/z_6_3_p02.png)
+
+![Soluzioni e risultati dal PDF originale 2](./images/santarelli/z_6_3_p03.png)
+
+![Soluzioni e risultati dal PDF originale 3](./images/santarelli/z_6_3_p04.png)
+
+![Soluzioni e risultati dal PDF originale 4](./images/santarelli/z_6_3_p05.png)
+
+
