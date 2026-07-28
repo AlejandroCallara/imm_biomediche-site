@@ -1728,3 +1728,44 @@ $$
 $$
 
 > **Nota editoriale.** Nella trascrizione sono stati regolarizzati alcuni evidenti refusi tipografici presenti nel documento originale: il termine $p^k$ nella distribuzione binomiale, le sommatorie nella varianza, la forma completa della distribuzione di Poisson e la notazione della proprietà di ingrandimento/riduzione.
+
+# Materiale aggiuntivo: Ricostruzione iterativa di immagini tomografiche
+
+I seguenti appunti approfondiscono la ricostruzione tomografica come problema lineare inverso, i criteri statistici di stima, gli algoritmi iterativi e i metodi ML-EM, OS-EM e MAP.
+
+![Pagine degli appunti originali - pagina 1](./images/ricostruzione_iterativa_appunti/ricostruzione_iterativa_p01.jpg)
+
+![Pagine degli appunti originali - pagina 2](./images/ricostruzione_iterativa_appunti/ricostruzione_iterativa_p02.jpg)
+
+![Pagine degli appunti originali - pagina 3](./images/ricostruzione_iterativa_appunti/ricostruzione_iterativa_p03.jpg)
+
+![Pagine degli appunti originali - pagina 4](./images/ricostruzione_iterativa_appunti/ricostruzione_iterativa_p04.jpg)
+
+![Pagine degli appunti originali - pagina 5](./images/ricostruzione_iterativa_appunti/ricostruzione_iterativa_p05.jpg)
+
+![Pagine degli appunti originali - pagina 6](./images/ricostruzione_iterativa_appunti/ricostruzione_iterativa_p06.jpg)
+
+![Pagine degli appunti originali - pagina 7](./images/ricostruzione_iterativa_appunti/ricostruzione_iterativa_p07.jpg)
+
+![Pagine degli appunti originali - pagina 8](./images/ricostruzione_iterativa_appunti/ricostruzione_iterativa_p08.jpg)
+
+![Pagine degli appunti originali - pagina 9](./images/ricostruzione_iterativa_appunti/ricostruzione_iterativa_p09.jpg)
+
+![Pagine degli appunti originali - pagina 10](./images/ricostruzione_iterativa_appunti/ricostruzione_iterativa_p10.jpg)
+
+![Pagine degli appunti originali - pagina 11](./images/ricostruzione_iterativa_appunti/ricostruzione_iterativa_p11.jpg)
+
+![Pagine degli appunti originali - pagina 12](./images/ricostruzione_iterativa_appunti/ricostruzione_iterativa_p12.jpg)
+
+![Pagine degli appunti originali - pagina 13](./images/ricostruzione_iterativa_appunti/ricostruzione_iterativa_p13.jpg)
+
+![Pagine degli appunti originali - pagina 14](./images/ricostruzione_iterativa_appunti/ricostruzione_iterativa_p14.jpg)
+
+![Pagine degli appunti originali - pagina 15](./images/ricostruzione_iterativa_appunti/ricostruzione_iterativa_p15.jpg)
+
+![Pagine degli appunti originali - pagina 16](./images/ricostruzione_iterativa_appunti/ricostruzione_iterativa_p16.jpg)
+
+![Pagine degli appunti originali - pagina 17](./images/ricostruzione_iterativa_appunti/ricostruzione_iterativa_p17.jpg)
+
+![Pagine degli appunti originali - pagina 18](./images/ricostruzione_iterativa_appunti/ricostruzione_iterativa_p18.jpg)
+

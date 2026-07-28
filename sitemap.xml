@@ -71,6 +71,9 @@
     <loc>http://localhost:3000/c6-algoritmi-di-ricostruzione-delle-bioimmagini</loc>
   </url>
   <url>
+    <loc>http://localhost:3000/metodi-di-ricostruzione-iterativa-in-tomografia-ap</loc>
+  </url>
+  <url>
     <loc>http://localhost:3000/z-6-1-esercitazione</loc>
   </url>
   <url>
@@ -87,6 +90,12 @@
   </url>
   <url>
     <loc>http://localhost:3000/z-6-6-esercitazione</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/c7-traccianti-in-medicina</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/c8-kinetic-modeling-basis</loc>
   </url>
   <url>
     <loc>http://localhost:3000/bibliografia</loc>
