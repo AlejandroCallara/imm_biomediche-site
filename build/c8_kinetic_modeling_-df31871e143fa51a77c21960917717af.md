@@ -1,9 +1,5 @@
 # Capitolo 8: Kinetic Modeling Basis
 
-Questo capitolo raccoglie gli appunti del file `source/Appunti su - Kinetic modeling basis.pdf`.
-
-Il documento originale contiene materiale prevalentemente grafico e formulare; le pagine sono quindi riportate come immagini per conservare layout, figure e notazione matematica.
-
 ## Contenuti principali
 
 - Mathematical basis of modeling
@@ -12,8 +8,6 @@ Il documento originale contiene materiale prevalentemente grafico e formulare; l
 - Tissue compartment models and kinetics
 - Energy metabolism and general two tissue compartment model
 - FDG modeling basis
-
-## Pagine degli appunti originali
 
 ![Pagine degli appunti originali - pagina 1](./images/kinetic_modeling_basis/kinetic_modeling_basis_p01.jpg)
 
