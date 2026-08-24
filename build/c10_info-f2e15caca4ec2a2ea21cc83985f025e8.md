@@ -1,9 +1,0 @@
-# Materiale per esercitazioni
-
-Una copia del materiale necessario al completamento delle esercitazioni di questa dispensa è disponibile al seguente link:
-https://unipiit-my.sharepoint.com/:f:/g/personal/a025738_unipi_it/IgDCD_KOmL5XRI8m9sWhvcyvARdo9LKTTAXTGp_vd_ZxhLI?e=tpN1XU
-
-I dataset volumetrici e i file DICOM non sono inclusi direttamente nel repository della dispensa, perché alcuni file sono di grandi dimensioni. Il codice di partenza degli scheletri è riportato nelle singole pagine delle esercitazioni.
-
-Nota di organizzazione: nella cartella temporanea erano presenti anche versioni duplicate di alcune esercitazioni. In dispensa sono state inserite le versioni corrette/finali: `ok-Esercitazione4 06_10_2025.pdf` per l'esercitazione 4 e `Esercitazione10 27e29_10_2025.pdf` per l'esercitazione 10.
-
