@@ -1,0 +1,266 @@
+# Esercitazione 2.1: Formazione di sinogrammi per immagini tomografiche
+
+## Dati
+
+- File `phantom.py` con la definizione del fantoccio di Shepp-Logan.
+
+## Librerie Python
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from skimage.transform import radon
+```
+
+## Generare
+
+1. Un fantoccio con singolo punto non nullo su matrice `64 x 64`, posizionando il pixel non nullo lateralmente e non al centro dell'immagine.
+2. Un fantoccio Shepp-Logan di `128 x 128` punti.
+3. Un fantoccio Shepp-Logan di `32 x 32` punti.
+
+## Svolgere
+
+### Punto A
+
+Calcolare il sinogramma del fantoccio 1 con la funzione `radon`, per `-180° <= theta < 180°`, con `Delta theta = 1°`, e visualizzare il risultato.
+
+### Punto B
+
+Calcolare i sinogrammi con la funzione `radon` per `-180° <= theta < 180°`, con `Delta theta = 1°`, `Delta theta = 10°` e `Delta theta = 18°`, per i fantocci dei punti 2 e 3. Visualizzare i risultati come sinogrammi a diversa risoluzione radiale e angolare.
+
+## Suggerimento
+
+Per generare il sinogramma usare:
+
+```python
+Sino_P1 = radon(P, theta=teta, circle=False, preserve_range=True)
+```
+
+`circle=False` mantiene le dimensioni originali. `preserve_range=True` permette di avere valori dei sinogrammi analoghi a quelli di MATLAB.
+
+## Codice di partenza
+
+```python
+# -*- coding: utf-8 -*-
+"""
+Generazione fantocci e sinogrammi
+# %%
+
+
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+from skimage.transform import radon
+from phantom import phantom
+
+
+# %%%%%%%%%%%% PUNTO A singolo punto Delta_Teta = 1° %%%%%%%%%%%%%%%%%%%%%
+teta = ....  # Genera array da -180 a 179 con passo 1
+teta10 = ....  # Genera array da -180 a 179 con passo 10
+teta18 = ....  # Genera array da -180 a 179 con passo 18
+
+# calcolo sinogramma per ciascuna immagine
+# immagini fantoccio di un punto, matrice 64x64
+P = .....
+Sino_P1 = radon(P, theta=teta, circle=False,preserve_range=True)  # circle=False per mantenere le dimensioni originali
+   # N.B.: 'preserve_range=True' è necessario per avere i valori dei sinogrammi analoghi a quelli del Matlab
+
+plt.figure()
+# mostrare fantoccio puntiforme e suo sinogramma
+
+# %%
+# %%%%%%%%%%%% PUNTO B Delta_Teta = 1° %%%%%%%%%%%%%%%%%%%%%
+# calcolo sinogramma per ciascuna immagine
+# immagini fantoccio 32x32
+P_piccolo = phantom(32,p_type = 'Modified Shepp-Logan')
+Sino_P_piccolo1 = radon(P_piccolo, theta=teta, circle=False,preserve_range=True)
+Sino_P_piccolo10 = .....
+Sino_P_piccolo18 = ......
+
+# calcolo sinogramma per ciascuna immagine
+# immagini fantoccio 128x128
+P_grande = .....
+Sino_P_grande1 = ......
+Sino_P_grande10 = .....
+Sino_P_grande18 = .....
+
+plt.figure()
+
+#  mostrere fantocci e sinogrammi a diversa risoluzione
+
+.....
+
+plt.show()
+```
+
+
+### `phantom.py`
+
+```python
+## Copyright (C) 2010  Alex Opie  <lx_op@orcon.net.nz>
+##
+## This program is free software; you can redistribute it and/or modify it
+## under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 3 of the License, or (at
+## your option) any later version.
+##
+## This program is distributed in the hope that it will be useful, but
+## WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the GNU
+## General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with this program; see the file COPYING.  If not, see
+## <http://www.gnu.org/licenses/>.
+
+import numpy as np
+
+def phantom (n = 256, p_type = 'Modified Shepp-Logan', ellipses = None):
+	"""
+	 phantom (n = 256, p_type = 'Modified Shepp-Logan', ellipses = None)
+	
+	Create a Shepp-Logan or modified Shepp-Logan phantom.
+
+	A phantom is a known object (either real or purely mathematical) 
+	that is used for testing image reconstruction algorithms.  The 
+	Shepp-Logan phantom is a popular mathematical model of a cranial
+	slice, made up of a set of ellipses.  This allows rigorous 
+	testing of computed tomography (CT) algorithms as it can be 
+	analytically transformed with the radon transform (see the 
+	function `radon').
+	
+	Inputs
+	------
+	n : The edge length of the square image to be produced.
+	
+	p_type : The type of phantom to produce. Either 
+	  "Modified Shepp-Logan" or "Shepp-Logan".  This is overridden
+	  if `ellipses' is also specified.
+	
+	ellipses : Custom set of ellipses to use.  These should be in 
+	  the form
+	  	[[I, a, b, x0, y0, phi],
+	  	 [I, a, b, x0, y0, phi],
+	  	 ...]
+	  where each row defines an ellipse.
+	  I : Additive intensity of the ellipse.
+	  a : Length of the major axis.
+	  b : Length of the minor axis.
+	  x0 : Horizontal offset of the centre of the ellipse.
+	  y0 : Vertical offset of the centre of the ellipse.
+	  phi : Counterclockwise rotation of the ellipse in degrees,
+	        measured as the angle between the horizontal axis and 
+	        the ellipse major axis.
+	  The image bounding box in the algorithm is [-1, -1], [1, 1], 
+	  so the values of a, b, x0, y0 should all be specified with
+	  respect to this box.
+	
+	Output
+	------
+	P : A phantom image.
+	
+	Usage example
+	-------------
+	  import matplotlib.pyplot as pl
+	  P = phantom ()
+	  pl.imshow (P)
+	
+	References
+	----------
+	Shepp, L. A.; Logan, B. F.; Reconstructing Interior Head Tissue 
+	from X-Ray Transmissions, IEEE Transactions on Nuclear Science,
+	Feb. 1974, p. 232.
+	
+	Toft, P.; "The Radon Transform - Theory and Implementation", 
+	Ph.D. thesis, Department of Mathematical Modelling, Technical 
+	University of Denmark, June 1996.
+	
+	"""
+	
+	if (ellipses is None):
+		ellipses = _select_phantom (p_type)
+	elif (np.size (ellipses, 1) != 6):
+		raise AssertionError ("Wrong number of columns in user phantom")
+	
+	# Blank image
+	p = np.zeros ((n, n))
+
+	# Create the pixel grid
+	ygrid, xgrid = np.mgrid[-1:1:(1j*n), -1:1:(1j*n)]
+
+	for ellip in ellipses:
+		I   = ellip [0]
+		a2  = ellip [1]**2
+		b2  = ellip [2]**2
+		x0  = ellip [3]
+		y0  = ellip [4]
+		phi = ellip [5] * np.pi / 180  # Rotation angle in radians
+		
+		# Create the offset x and y values for the grid
+		x = xgrid - x0
+		y = ygrid - y0
+		
+		cos_p = np.cos (phi) 
+		sin_p = np.sin (phi)
+		
+		# Find the pixels within the ellipse
+		locs = (((x * cos_p + y * sin_p)**2) / a2 
+              + ((y * cos_p - x * sin_p)**2) / b2) <= 1
+		
+		# Add the ellipse intensity to those pixels
+		p [locs] += I
+
+	return p
+
+
+def _select_phantom (name):
+	if (name.lower () == 'shepp-logan'):
+		e = _shepp_logan ()
+	elif (name.lower () == 'modified shepp-logan'):
+		e = _mod_shepp_logan ()
+	else:
+		raise ValueError ("Unknown phantom type: %s" % name)
+	
+	return e
+
+
+def _shepp_logan ():
+	#  Standard head phantom, taken from Shepp & Logan
+	return [[   2,   .69,   .92,    0,      0,   0],
+	        [-.98, .6624, .8740,    0, -.0184,   0],
+	        [-.02, .1100, .3100,  .22,      0, -18],
+	        [-.02, .1600, .4100, -.22,      0,  18],
+	        [ .01, .2100, .2500,    0,    .35,   0],
+	        [ .01, .0460, .0460,    0,     .1,   0],
+	        [ .02, .0460, .0460,    0,    -.1,   0],
+	        [ .01, .0460, .0230, -.08,  -.605,   0],
+	        [ .01, .0230, .0230,    0,  -.606,   0],
+	        [ .01, .0230, .0460,  .06,  -.605,   0]]
+
+def _mod_shepp_logan ():
+	#  Modified version of Shepp & Logan's head phantom, 
+	#  adjusted to improve contrast.  Taken from Toft.
+	return [[   1,   .69,   .92,    0,      0,   0],
+	        [-.80, .6624, .8740,    0, -.0184,   0],
+	        [-.20, .1100, .3100,  .22,      0, -18],
+	        [-.20, .1600, .4100, -.22,      0,  18],
+	        [ .10, .2100, .2500,    0,    .35,   0],
+	        [ .10, .0460, .0460,    0,     .1,   0],
+	        [ .10, .0460, .0460,    0,    -.1,   0],
+	        [ .10, .0460, .0230, -.08,  -.605,   0],
+	        [ .10, .0230, .0230,    0,  -.606,   0],
+	        [ .10, .0230, .0460,  .06,  -.605,   0]]
+
+#def ?? ():
+#	# Add any further phantoms of interest here
+#	return np.array (
+#	 [[ 0, 0, 0, 0, 0, 0],
+#	  [ 0, 0, 0, 0, 0, 0]])
+```
+
+
+## Soluzione
+
+![Risultati dal PDF originale 1](./images/santarelli/z_6_1_p02.png)
+

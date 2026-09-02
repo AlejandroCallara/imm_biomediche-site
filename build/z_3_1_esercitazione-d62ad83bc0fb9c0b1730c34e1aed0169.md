@@ -1,0 +1,41 @@
+# Esercitazione 3.1: Formazione di sinogrammi per immagini PET
+
+## Librerie Python
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from skimage.transform import radon
+```
+
+## Generare
+
+Generare un fantoccio circolare con emissione media per pixel `lambda = 50 Bq`, raggio `20 cm`, campo di vista `70 cm`, su una matrice di `128 x 128` pixel.
+
+## Svolgere
+
+Eseguire le seguenti operazioni sul fantoccio:
+
+1. Aggiungere l'effetto dell'attenuazione `mu = 0.05 cm^-1` e il comportamento poissoniano dell'emissione. Per l'attenuazione usare `exp(-mu*l)`; per il comportamento poissoniano usare `np.random.poisson`.
+2. Generare il sinogramma del fantoccio, con `-180° <= theta < 180°`, per `Delta theta = 1°`.
+3. Al sinogramma del punto 2 aggiungere l'effetto delle coincidenze accidentali e dello scattering random. Le coincidenze accidentali sono simulate secondo una distribuzione di Poisson, con valor medio = 10% del massimo del sinogramma, e avvengono su tutto il campo di vista. Lo scattering random è massimo nelle righe centrali del sinogramma e diminuisce con andamento gaussiano allontanandosi dal centro. Una possibile implementazione è:
+
+```python
+xgauss = np.linspace(-1, 1, proj1.shape[0])
+gaussdata = np.exp(-(xgauss)**2 / (2 * 0.208))
+gaussdata = (gaussdata - np.min(gaussdata)) / (np.max(gaussdata) - np.min(gaussdata))
+gaussdata = gaussdata * (M * PS / 100)
+phantscatter = np.random.poisson(np.tile(gaussdata.reshape(-1, 1), (1, na)))
+```
+
+Dove `proj1` è il sinogramma su cui sommare lo scattering, `M` è il massimo del sinogramma e `PS` è la percentuale del massimo da assegnare allo scattering.
+
+4. Al sinogramma del punto 3 aggiungere il rumore di misura, cioè rumore gaussiano bidimensionale con media nulla e deviazione standard pari al `5%` del valore massimo del sinogramma. Usare `np.random.randn`.
+5. Visualizzare i risultati.
+
+## Soluzione
+
+![Risultati dal PDF originale 1](./images/santarelli/z_6_2_p02.png)
+
+![Risultati dal PDF originale 2](./images/santarelli/z_6_2_p03.png)
+

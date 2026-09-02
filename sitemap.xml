@@ -20,10 +20,22 @@
     <loc>http://localhost:3000/c2-immagini-radiologiche</loc>
   </url>
   <url>
+    <loc>http://localhost:3000/z-2-1-esercitazione</loc>
+  </url>
+  <url>
     <loc>http://localhost:3000/c3-immagini-in-medicina-nucleare</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/c4-immagini-di-risonanza-magnetica</loc>
+    <loc>http://localhost:3000/z-3-1-esercitazione</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/c4-0-immagini-di-risonanza-magnetica</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/c4-1-dal-fenomeno-di-risonanza-magnetica-al-segnal</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/c4-2-dal-segnale-rm-all-immagine-rm</loc>
   </url>
   <url>
     <loc>http://localhost:3000/z-4-1-esercitazione</loc>
@@ -59,12 +71,6 @@
     <loc>http://localhost:3000/z-6-6-esercitazione</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/z-6-7-esercitazione</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/z-6-8-esercitazione</loc>
-  </url>
-  <url>
     <loc>http://localhost:3000/c7-traccianti-in-medicina</loc>
   </url>
   <url>
@@ -80,12 +86,6 @@
     <loc>http://localhost:3000/z-7-4-esercitazione</loc>
   </url>
   <url>
-    <loc>http://localhost:3000/z-7-5-esercitazione</loc>
-  </url>
-  <url>
-    <loc>http://localhost:3000/z-7-6-esercitazione</loc>
-  </url>
-  <url>
     <loc>http://localhost:3000/c8-kinetic-modeling-basis</loc>
   </url>
   <url>
@@ -96,6 +96,12 @@
   </url>
   <url>
     <loc>http://localhost:3000/z-8-3-esercitazione</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/z-8-4-esercitazione</loc>
+  </url>
+  <url>
+    <loc>http://localhost:3000/z-8-5-esercitazione</loc>
   </url>
   <url>
     <loc>http://localhost:3000/bibliografia</loc>
